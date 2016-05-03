@@ -1,0 +1,1 @@
+var User = require(__dirname + '/../models/user.js');

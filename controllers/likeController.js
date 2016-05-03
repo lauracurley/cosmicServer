@@ -1,0 +1,1 @@
+var Like = require(__dirname + '/../models/like.js');

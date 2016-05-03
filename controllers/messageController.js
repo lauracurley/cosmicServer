@@ -1,0 +1,1 @@
+var Message = require(__dirname + '/../models/message.js');

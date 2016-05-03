@@ -1,0 +1,1 @@
+var Profile = require(__dirname + '/../models/profile.js');
