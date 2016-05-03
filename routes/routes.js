@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 //routing utilities
-var userUtil = require('../utils/userUtils.js')
 // custom helper middleware 
 var helpers = require('../config/helpers.js');
 
