@@ -1,0 +1,11 @@
+node_modules/
+bower_components/
+*.log
+
+build/
+dist/
+
+# OSX
+#
+.DS_Store
+I
