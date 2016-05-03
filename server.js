@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+require('./config/index.js')(); //require and invoke immediately to connect DB
+
+
 var port = process.env.PORT || 8000;
 
 //config app with required middleware

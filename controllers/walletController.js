@@ -1,0 +1,1 @@
+var Wallet = require('../models/wallet.js');
