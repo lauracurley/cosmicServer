@@ -4,14 +4,14 @@ const Sequelize = require('sequelize');
 let db;
 
 if (process.env.NODE_ENV === 'production') {
-  db = new Sequelize('voyager', process.env.DB_USER, process.env.DB_PASSWORD, {
+  db = new Sequelize('bits', process.env.DB_USER, process.env.DB_PASSWORD, {
     dialect: 'postgres',
     define: {
       underscored: false,
     },
   });
 } else {
-  db = new Sequelize('voyager', null, null, {
+  db = new Sequelize('bits', null, null, {
     dialect: 'postgres',
     define: {
       underscored: false,
