@@ -1,1 +1,1 @@
-var User = require(__dirname + '/../models/user.js');
+var User = require('../models/user.js');

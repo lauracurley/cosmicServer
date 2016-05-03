@@ -1,11 +1,12 @@
 module.exports = function() {
-  var db = require(__dirname + '/db.js');
-  var User = require(__dirname + '/../models/user.js');
-  var Like = require(__dirname + '/../models/like.js');
-  var Message = require(__dirname + '/../models/message.js');
-  var Profile = require(__dirname + '/../models/profile.js');
-  var User = require(__dirname + '/../models/user.js');
-  var Wallet = require(__dirname + '/../models/wallet.js');
+  'use strict';
+  var db = require('./db.js');
+  var User = require('../models/user.js');
+  var Like = require('../models/like.js');
+  var Message = require('../models/message.js');
+  var Profile = require('../models/profile.js');
+  var User = require('../models/user.js');
+  var Wallet = require('../models/wallet.js');
 
 
   // Place.belongsToMany(User, {through: 'UserPlace'});

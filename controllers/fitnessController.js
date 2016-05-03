@@ -1,1 +1,1 @@
-var Fitness = require(__dirname + '/../models/fitness.js');
+var Fitness = require('../models/fitness.js');

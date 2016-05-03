@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-require(__dirname + '/config/index.js')(); //require and invoke immediately to connect DB
+require('./config/index.js')(); //require and invoke immediately to connect DB
+
 
 var port = process.env.PORT || 8000;
 

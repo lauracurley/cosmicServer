@@ -1,1 +1,1 @@
-var Profile = require(__dirname + '/../models/profile.js');
+var Profile = require('../models/profile.js');

@@ -1,1 +1,1 @@
-var Like = require(__dirname + '/../models/like.js');
+var Like = require('../models/like.js');

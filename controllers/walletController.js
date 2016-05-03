@@ -1,1 +1,1 @@
-var Wallet = require(__dirname + '/../models/wallet.js');
+var Wallet = require('../models/wallet.js');

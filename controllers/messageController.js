@@ -1,1 +1,1 @@
-var Message = require(__dirname + '/../models/message.js');
+var Message = require('../models/message.js');
