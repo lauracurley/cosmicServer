@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../config/db.js');
 
-var Like = db.define('Like',
+var Like = db.define('like',
   {
     id: {
       type: Sequelize.UUID,

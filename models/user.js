@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../config/db.js');
 
-var User = db.define('User',
+var User = db.define('user',
   {
     id: {
       type: Sequelize.UUID,
