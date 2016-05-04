@@ -7,7 +7,7 @@ var app = express();
 var port = process.env.PORT || 8000;
 
 require('./config/middleware.js')(app, express); //config app with required middleware
-require('./routes/routes.js')(app, express); //define routes for app
+require('./router.js')(app, express); //define routes for app
 
 app.listen(port, (err) => {
   if (err) {
