@@ -1,1 +1,0 @@
-var Like = require('../models/like.js');

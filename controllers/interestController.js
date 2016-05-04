@@ -1,0 +1,1 @@
+var Interest = require('../models/interest.js');
