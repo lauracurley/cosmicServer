@@ -45,6 +45,8 @@ From within the root directory:
 - \connect (switch databases)
 - \q (exit psql command line)
 
+- \d [tablename] (show table column names)
+
 
 
 ### Installing Dependencies
