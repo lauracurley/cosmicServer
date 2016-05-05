@@ -38,7 +38,7 @@ From within the root directory:
 
 
 ## PostgreSQL Command Cheatsheet
-- createdb [databasename] (create a new database called databasename)
+- createdb _databasename_ (create a new database called databasename)
 - dropdb [databasename] (delete an existing database)
 - psql (enter PostgreSQL command line)
 - \list (list all databases)
