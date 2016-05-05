@@ -4,7 +4,7 @@
   "description": "CosmicTornado repo",
   "main": "n/a",
   "scripts": {
-    "test": ""
+    "tests": "mocha"
   },
   "repository": {
     "type": "git",
