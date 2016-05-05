@@ -19,6 +19,10 @@ var User = db.define('user',
     lastName: {
       type: Sequelize.STRING,
       field: 'last_name'
+    },
+    facebookID: {
+      type: Sequelize.STRING,
+      field: 'facebook_id'
     }
   }, 
   {

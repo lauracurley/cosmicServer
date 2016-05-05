@@ -1,7 +1,7 @@
 module.exports = function() {
   var db = require('./db.js');
   var User = require('../models/user.js');
-  var Interest = require('../models/interest.js');
+  var Match = require('../models/match.js');
   var Message = require('../models/message.js');
   var Profile = require('../models/profile.js');
   var User = require('../models/user.js');

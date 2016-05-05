@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../config/db.js');
 
-var Interest = db.define('interest',
+var Match = db.define('match',
   {
     id: {
       type: Sequelize.UUID,
@@ -11,10 +11,6 @@ var Interest = db.define('interest',
     cost: {
       type: Sequelize.INTEGER,
       field: 'cost'
-    },
-    points: {
-      type: Sequelize.INTEGER,
-      field: 'points'
     }
   }, 
   {
@@ -23,4 +19,4 @@ var Interest = db.define('interest',
 );
 
 
-module.exports = Interest;
+module.exports = Match;
