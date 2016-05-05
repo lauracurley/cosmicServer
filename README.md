@@ -1,12 +1,12 @@
-# Project Name
+# Cosmic Server
 
 > Pithy project description
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Haoming Huang
+  - __Scrum Master__: Laura Curley
+  - __Development Team Members__: Kenneth Montgomery
 
 ## Table of Contents
 
@@ -21,45 +21,33 @@
 ## Requirements
 
 - Node 5.8.x
-- Postgresql 9.1.x
+- PostgreSQL 9.5.x
 - etc
 - etc
 
 ## Development
 
-## Initial one-time setup
-
 ### Installing dependencies
-
-1. Install brew if necessary (http://brew.sh/)
-1. Install Xcode if necessary (https://developer.apple.com/xcode/download/)
-1. brew install watchman (https://facebook.github.io/watchman/docs/install.html)
-1. brew install flow (http://www.flowtype.org/)
-1. npm install -g react-native-cli
-
-### Setup Facebook Login by linking binaries in xcode
-Run open node_modules/react-native-facebook-login
-Drag RCTFBLogin.xcodeproj into your Libraries group
-Select your main project in the xcode navigator to bring up settings
-Under Build Phases expand the Link Binary With Libraries header
-Scroll down and click the + to add a library
-Find and add libRCTFBLogin.a under the Workspace group
-⌘+B to build project in xcode
-Additional details setup instructions at https://github.com/magus/react-native-facebook-login
+1. Install PostgreSQL following this tutorial (https://www.codefellows.org/blog/three-battle-tested-ways-to-install-postgresql)
 
 ### Setting up the Database
-psql -f server/config/schema.sql
-
-
-
-
-## Usage
-
 From within the root directory:
 
-1. In terminal, "open client/ios/client.xcodeproj" to open project in Xcode
-1. Click the run icon to launch the app
- 
+1. In terminal, *createdb cosmictornado* to create a database
+1. In terminal, *nodemon server.js* to start the server and link the tables to the database
+
+
+## PostgreSQL Command Cheatsheet
+- createdb _databasename_ (create a new database called databasename)
+- dropdb _databasename_ (delete an existing database)
+- psql (enter PostgreSQL command line)
+- \list (list all databases)
+- \connect (switch databases)
+- \q (exit psql command line)
+
+- \d _tablename_ (show table column names)
+
+
 
 ### Installing Dependencies
 

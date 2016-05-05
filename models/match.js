@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../config/db.js');
 
-var Like = db.define('Like',
+var Match = db.define('match',
   {
     id: {
       type: Sequelize.UUID,
@@ -11,10 +11,6 @@ var Like = db.define('Like',
     cost: {
       type: Sequelize.INTEGER,
       field: 'cost'
-    },
-    points: {
-      type: Sequelize.INTEGER,
-      field: 'points'
     }
   }, 
   {
@@ -23,4 +19,4 @@ var Like = db.define('Like',
 );
 
 
-module.exports = Like;
+module.exports = Match;
