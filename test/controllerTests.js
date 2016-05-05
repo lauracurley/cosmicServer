@@ -1,8 +1,6 @@
 var expect = require('chai').expect;
 
-
-
-describe('Controller Tests', function() {
+xdescribe('Controller Tests', function() {
   describe('Fitness Controller', function() {
     var fitnessController = require('../controllers/fitnessController.js');
 
@@ -64,6 +62,9 @@ describe('Controller Tests', function() {
 
     it('should have a function named "saveOne"', function() {
       expect(userController.saveOne).to.be.a('function');
+    });
+
+    it('should have a function named "saveOne" that returns 1', function() {
     });
 
     it('should have a function named "fetchAll"', function() {

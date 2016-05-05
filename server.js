@@ -1,12 +1,12 @@
-console.log('Require: ', require);
-require('./config/index.js')(); //require and invoke immediately to connect DB
+
+require('./database/index.js')(); //require and invoke immediately to connect DB
 
 var express = require('express');
 
 var app = express();
 var port = process.env.PORT || 8000;
 
-require('./config/middleware.js')(app, express); //config app with required middleware
+require('./utilities/middleware.js')(app, express); //config app with required middleware
 require('./router.js')(app, express); //define routes for app
 
 app.listen(port, (err) => {
