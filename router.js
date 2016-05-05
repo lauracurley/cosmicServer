@@ -1,4 +1,9 @@
+var fitnessController = require('./controllers/fitnessController');
+var matchController = require('./controllers/matchController');
+var messageController = require('./controllers/messageController');
+var profileController = require('./controllers/profileController');
 var userController = require('./controllers/userController');
+var walletController = require('./controllers/walletController');
 
 
 
