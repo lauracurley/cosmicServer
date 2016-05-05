@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-describe('Model Tests', function() {
+xdescribe('Model Tests', function() {
   describe('Fitness Model', function() {
     var Fitness = require('../models/fitness.js');
 
