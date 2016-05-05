@@ -5,8 +5,6 @@ var profileController = require('./controllers/profileController');
 var userController = require('./controllers/userController');
 var walletController = require('./controllers/walletController');
 
-
-
 var express = require('express');
 var path = require('path');
 
@@ -16,6 +14,7 @@ module.exports = (app, express) => {
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
+  // EXAMPLE CODE:
   app.post('/api/user', userController.saveOne);
   app.get('/api/user', userController.fetchAll);
 

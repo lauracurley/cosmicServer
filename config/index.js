@@ -8,12 +8,8 @@ module.exports = function() {
   var Wallet = require('../models/wallet.js');
 
   // Not sure if this block is right...
-  Match.belongsToMany(User, {through: 'Match'});
-  User.belongsToMany(Match, {through: 'User'});
-
-  Message.belongsToMany(User, {through: 'Message'});
-  User.belongsToMany(Message, {through: 'User'});
-
+  User.belongsToMany(User, {through: 'Match'});
+  User.belongsToMany(User, {through: 'Message'});
 
   // Place.belongsToMany(User, {through: 'UserPlace'});
   // User.belongsToMany(Place, {through: 'UserPlace'});
