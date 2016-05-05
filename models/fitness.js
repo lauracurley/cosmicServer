@@ -22,5 +22,4 @@ var Fitness = db.define('fitness',
   }
 );
 
-
 module.exports = Fitness;

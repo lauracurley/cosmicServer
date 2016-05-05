@@ -1,12 +1,18 @@
 var expect = require('chai').expect;
-// var Fitness = require('./Fitness.js');
-
 
 describe('Model Tests', function() {
   describe('Fitness Model', function() {
-    it('should return true', function() {
-      expect(true).to.be.true;
+    var Fitness = require('../models/fitness.js');
+
+    it('should exist', function() {
+      expect(Fitness).to.exist;
+    });
+
+    it('should be an object', function() {
+      expect(Fitness).to.be.a('object');
     });
   });
+
+
 });
 
