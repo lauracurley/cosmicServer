@@ -67,6 +67,7 @@ describe('Controller Tests', function() {
     });
 
     it('should have a function named "saveOne" that saves one user', function(done) {
+      // This example code is not complete yet
       request(app) 
         .post('/api/user')
         .send( {firstName: 'hao'} )
