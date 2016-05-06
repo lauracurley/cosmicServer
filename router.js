@@ -1,14 +1,14 @@
-var fitnessController = require('./controllers/fitnessController');
-var matchController = require('./controllers/matchController');
-var messageController = require('./controllers/messageController');
-var profileController = require('./controllers/profileController');
-var userController = require('./controllers/userController');
-var walletController = require('./controllers/walletController');
+var fitnessController = require('./controllers/fitnessController.js');
+var matchController = require('./controllers/matchController.js');
+var messageController = require('./controllers/messageController.js');
+var profileController = require('./controllers/profileController.js');
+var userController = require('./controllers/userController.js');
+var walletController = require('./controllers/walletController.js');
 
 var express = require('express');
 var path = require('path');
 
-var helpers = require('./config/helpers.js'); //custom helper middleware
+var helpers = require('./utilities/helpers.js'); //custom helper middleware
 
 module.exports = (app, express) => {
   app.use(helpers.errorLogger);

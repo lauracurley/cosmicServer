@@ -2,8 +2,7 @@ var User = require('../models/user.js');
 
 
 module.exports.saveOne = function(req, res) {
-  console.log('Saved one user!');
-
+  res.status(201).end();
   // EXAMPLE CODE:
   // var user = req.body;
   // User.findOrCreate({where: user})
@@ -14,7 +13,7 @@ module.exports.saveOne = function(req, res) {
 };
 
 module.exports.fetchAll = function(req, res) {
-
+  res.status(200).end();
 };
 
 

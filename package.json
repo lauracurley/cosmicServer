@@ -4,7 +4,7 @@
   "description": "CosmicTornado repo",
   "main": "n/a",
   "scripts": {
-    "test": ""
+    "tests": "mocha"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,9 @@
     "pg": "^4.5.5",
     "sequelize": "^3.22.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  }
 }

@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var db = require('../config/db.js');
+var db = require('../database/db.js');
 
 var Fitness = db.define('fitness',
   {
@@ -21,6 +21,5 @@ var Fitness = db.define('fitness',
     freezeTableName: true // Model tableName will be the same as the model name
   }
 );
-
 
 module.exports = Fitness;

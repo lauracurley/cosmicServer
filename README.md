@@ -47,7 +47,8 @@ From within the root directory:
 
 - \d _tablename_ (show table column names)
 
-
+## Testing
+- In terminal, *mocha* to run tests
 
 ### Installing Dependencies
 

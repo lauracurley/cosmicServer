@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var db = require('../config/db.js');
+var db = require('../database/db.js');
 
 var Profile = db.define('profile',
   {
