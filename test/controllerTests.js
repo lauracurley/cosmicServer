@@ -66,6 +66,12 @@ describe('Controller Tests', function() {
       expect(userController.saveOne).to.be.a('function');
     });
 
+    it('should have a function named "saveOne" that saves one user', function(done) {
+      request(app) 
+        .post('/api/user')
+        .send( {firstName: 'hao'} )
+        .expect(201, done);
+    });
 
     it('should have a function named "fetchAll"', function() {
       expect(userController.saveOne).to.be.a('function');
