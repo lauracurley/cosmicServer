@@ -14,7 +14,7 @@ module.exports.saveOne = function(req, res) {
 };
 
 module.exports.fetchAll = function(req, res) {
-
+  res.status(200).end();
 };
 
 

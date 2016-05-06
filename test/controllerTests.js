@@ -1,6 +1,8 @@
 var expect = require('chai').expect;
+var request = require('supertest');
+var app = require('../server.js');
 
-xdescribe('Controller Tests', function() {
+describe('Controller Tests', function() {
   describe('Fitness Controller', function() {
     var fitnessController = require('../controllers/fitnessController.js');
 
@@ -64,11 +66,16 @@ xdescribe('Controller Tests', function() {
       expect(userController.saveOne).to.be.a('function');
     });
 
-    it('should have a function named "saveOne" that returns 1', function() {
-    });
 
     it('should have a function named "fetchAll"', function() {
       expect(userController.saveOne).to.be.a('function');
+    });
+
+    it('should have a function named "fetchAll" that returns the fetched user', function(done) {
+      // This example code is not complete yet
+      request(app)
+        .get('/api/user')
+        .expect(200, done);
     });
   });
 
