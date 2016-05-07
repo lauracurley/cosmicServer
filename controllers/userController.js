@@ -25,5 +25,10 @@ module.exports.fetchAll = function(req, res) {
   res.status(200).end();
 };
 
+module.exports.saveToken = function(token,facebookId) {
+  User.update({fitbitRefreshToken: token},
+    {where: {facebookID: facebookID}});
+}
+
 
 
