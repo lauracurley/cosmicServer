@@ -1,18 +1,19 @@
-var Person = require('../models/person.js');
+var User = require('../models/user.js');
 
 
 module.exports.saveOne = function(req, res) {
-  var personData = {
+  console.log('REQ: ', req.body);
+  var userData = {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     facebook_id: req.body.facebookID
   };
 
-  Person
-    .findOrCreate({where: personData})
-    .spread(function(person, created) {
-      res.status(201).json(person.dataValues);
+  User
+    .findOrCreate({where: userData})
+    .spread(function(user, wasCreated) {
+      res.status(201).json(user.dataValues);
     });
 };
 
