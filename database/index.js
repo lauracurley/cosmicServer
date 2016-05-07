@@ -4,7 +4,7 @@ module.exports = function() {
   var Match = require('../models/match.js');
   var Message = require('../models/message.js');
   var Profile = require('../models/profile.js');
-  var User = require('../models/user.js');
+  var Person = require('../models/person.js');
   var Wallet = require('../models/wallet.js');
 
   // Not sure if this block is right...

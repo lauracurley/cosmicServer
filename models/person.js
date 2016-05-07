@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../database/db.js');
 
-var User = db.define('user',
+var Person = db.define('person',
   {
     id: {
       type: Sequelize.UUID,
@@ -35,4 +35,4 @@ var User = db.define('user',
 );
 
 
-module.exports = User;
+module.exports = Person;

@@ -16,12 +16,13 @@ module.exports.saveOne = function(req, res) {
       // }))
     // console.log('Created: ', created);
     res
-      .status(200)
+      .status(201)
       .json(profile.dataValues);
     });
 };
 
 module.exports.fetchOne = function(req, res) {
+  
   res.status(200).end();
 };
 
