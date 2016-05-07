@@ -4,8 +4,8 @@ module.exports.saveOne = function(req, res) {
   var profileData = {
     age: req.body.age,
     gender: req.body.gender,
-    zip_code: req.body.zipCode,
-    picture_path: req.body.picturePath
+    zipCode: req.body.zipCode,
+    picturePath: req.body.picturePath
   };
 
   Profile
