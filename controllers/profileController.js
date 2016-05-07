@@ -15,9 +15,7 @@ module.exports.saveOne = function(req, res) {
       //   plain: true
       // }))
     // console.log('Created: ', created);
-    res
-      .status(201)
-      .json(profile.dataValues);
+      res.status(201).json(profile.dataValues);
     });
 };
 
