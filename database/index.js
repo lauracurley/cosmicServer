@@ -16,5 +16,7 @@ module.exports = function() {
 
   // Place.sync(); //use {force: true} option to drop existing tables
   // User.sync();
+  Fitness.belongsTo(User);
+
   db.sync(); //Using this instead of syncing place and user separately creates the joint table UserPlace in the database.
 };
