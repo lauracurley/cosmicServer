@@ -43,6 +43,7 @@ From within the root directory:
 - psql (enter PostgreSQL command line)
 - \list (list all databases)
 - \connect (switch databases)
+- \dt (show all tables)
 - \q (exit psql command line)
 
 - \d _tablename_ (show table column names)
