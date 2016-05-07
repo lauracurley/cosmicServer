@@ -23,6 +23,10 @@ var User = db.define('user',
     facebookID: {
       type: Sequelize.STRING,
       field: 'facebook_id'
+    },
+    fitbitToken: {
+      type: Sequelize.STRING,
+      field: 'fitbit_token'
     }
   }, 
   {
