@@ -1,35 +1,24 @@
 var Profile = require('../models/profile.js');
 
 module.exports.saveOne = function(req, res) {
-  res.status(201).end();
-  // EXAMPLE CODE:
-  // var user = req.body;
-  // User.findOrCreate({where: user})
-  //   .then(function(createdUser) {
-  //     res.json(createdUser);
-  //   });
-  // };
+  var profileData = {
+    age: req.body.age,
+    gender: req.body.gender,
+    zip_code: req.body.zipCode,
+    picture_path: req.body.picturePath
+  };
 
-  // var user = req.body.user;
-  // var place = req.body.place;
-
-  // User.findOne({
-  //   where: user
-  // })
-  // .then(function(foundUser) {
-  //   Place.findOrCreate({where: place})
-  //     .spread(function(foundOrCreatedPlace) {
-  //        foundUser.addPlace(foundOrCreatedPlace)
-  //         .then(function(){
-  //           return foundUser.getPlaces();
-  //         })
-  //         .then(function(foundPlace){
-  //           console.log('foundplace', foundPlace);
-  //           res.json(foundPlace);
-  //         })
-
-  //    });
-  // });
+  Profile
+    .findOrCreate({where: profileData})
+    .spread(function(profile, created) {
+      // console.log(profile.get({
+      //   plain: true
+      // }))
+    // console.log('Created: ', created);
+    res
+      .status(200)
+      .json(profile.dataValues);
+    });
 };
 
 module.exports.fetchOne = function(req, res) {
