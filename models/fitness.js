@@ -31,12 +31,12 @@ var Fitness = db.define('fitness',
     veryActiveMinutes: {
       type: Sequelize.INTEGER,
       field: 'very_active_minutes'
-    },
-
+    }
   }, 
   {
     freezeTableName: true // Model tableName will be the same as the model name
   }
 );
-
+//Associations are defined in database/db.js
+  //Fitness belongs to User
 module.exports = Fitness;
