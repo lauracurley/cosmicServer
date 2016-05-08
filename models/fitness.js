@@ -12,10 +12,27 @@ var Fitness = db.define('fitness',
       type: Sequelize.INTEGER,
       field: 'steps'
     },
-    heartRate: {
+    restingHeartRate: {
       type: Sequelize.INTEGER,
-      field: 'heart_rate'
-    }
+      field: 'resting_heart_rate'
+    },
+    sedentaryMinutes: {
+      type: Sequelize.INTEGER,
+      field: 'sedentary_minutes'
+    },
+    lightlyActiveMinutes: {
+      type: Sequelize.INTEGER,
+      field: 'lightly_active_minutes'
+    },
+    fairlyActiveMinutes: {
+      type: Sequelize.INTEGER,
+      field: 'fairly_active_minutes'
+    },
+    veryActiveMinutes: {
+      type: Sequelize.INTEGER,
+      field: 'very_active_minutes'
+    },
+
   }, 
   {
     freezeTableName: true // Model tableName will be the same as the model name

@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var db = require('../database/db.js');
 
-var User = db.define('user',
+var User = db.define('users',
   {
     id: {
       type: Sequelize.UUID,
@@ -23,6 +23,10 @@ var User = db.define('user',
     facebookID: {
       type: Sequelize.STRING,
       field: 'facebook_id'
+    },
+    fitbitToken: {
+      type: Sequelize.STRING,
+      field: 'fitbit_token'
     }
   }, 
   {
