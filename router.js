@@ -14,6 +14,7 @@ module.exports = (app, express) => {
 
 
   // EXAMPLE CODE:
+  app.post('/auth', userController.isAuthed);
   app.post('/api/fitbit', fitbitController.authorize);
   app.post('/api/user', userController.saveOne);
   app.post('/api/user', userController.fetchOne);
