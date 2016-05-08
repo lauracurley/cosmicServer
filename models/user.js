@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var db = require('../database/db.js');
+
 var User = db.define('users',
   {
     id: {
@@ -19,7 +20,7 @@ var User = db.define('users',
       type: Sequelize.STRING,
       field: 'last_name',
     },
-    facebookID: {
+    facebookId: {
       type: Sequelize.STRING,
       field: 'facebook_id',
     },
