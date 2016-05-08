@@ -25,10 +25,18 @@ module.exports.fetchAll = function(req, res) {
   res.status(200).end();
 };
 
-module.exports.saveToken = function(token,facebookId) {
-  User.update({fitbitRefreshToken: token},
-    {where: {facebookID: facebookID}});
-}
+//If a refresh token is saved to the database the user is authorized
+module.exports.isAuthed = function(req, res, next) {
+  var facebookId = req.body.facebookId
+  User.findOne({where: {facebookId: facebookId}})
+    .then(function(user) {
+      if(user && user.get('fitbitRefreshToken')) {
+        res.status(201).json(true);
+      } else {
+        res.status(201).json(false);
+      }
+    });
+};
 
 
 
