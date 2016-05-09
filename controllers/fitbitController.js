@@ -9,7 +9,7 @@ var moment = require('moment');
 module.exports.authorize = function (req, res) {
   // parse the access code from fitbit callbackURL
   var code = req.body.query.url.split('=')[1].slice(0, -2);
-  var facebookId = req.body.query.userId;
+  var facebookId = req.body.query.facebookId;
   // set options for token retrieval
   var options = {
     url: 'https://api.fitbit.com/oauth2/token',
