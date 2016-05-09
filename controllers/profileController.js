@@ -12,9 +12,9 @@ module.exports.saveOne = function (req, res) {
   User.findOne({ where: { facebookId: facebookId } }).then(function (user) {
     Profile.findOrCreate({ where: { userId: user.get('id') } })
       .then(function (profile) {
-        profile[0].update({ profileData });
+        profile[0].update(profileData);
       }).then(function (profile) {
-        res.status(201).json(profile.dataValues);
+        res.status(201).json(profile);
       });
   });
 };
