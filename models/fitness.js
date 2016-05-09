@@ -8,6 +8,15 @@ var Fitness = db.define('fitness',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
+    userId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'userId',
+      field: 'user_id',
+    },
     steps: {
       type: Sequelize.INTEGER,
       field: 'steps',
@@ -31,15 +40,6 @@ var Fitness = db.define('fitness',
     veryActiveMinutes: {
       type: Sequelize.INTEGER,
       field: 'very_active_minutes',
-    },
-    userId: {
-      type: Sequelize.UUID,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
     },
   },
   {

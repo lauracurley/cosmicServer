@@ -8,6 +8,24 @@ var Message = db.define('message',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
+    fromUserId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'fromUserId',
+      field: 'from_user_id',
+    },
+    toUserId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'toUserId',
+      field: 'to_user_id',
+    },
     text: {
       type: Sequelize.STRING,
       field: 'text'
