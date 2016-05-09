@@ -8,9 +8,27 @@ var Match = db.define('match',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
+    likerUserId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'likerUserId',
+      field: 'liker_user_id',
+    },
+    likedUserId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'likedUserId',
+      field: 'liked_user_id',
+    },
     cost: {
       type: Sequelize.INTEGER,
-      field: 'cost'
+      field: 'steps'
     }
   }, 
   {

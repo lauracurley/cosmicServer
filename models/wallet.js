@@ -8,10 +8,19 @@ var Wallet = db.define('wallet',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
+    userId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'userId',
+      field: 'user_id',
+    },
     points: {
       type: Sequelize.INTEGER,
-      field: 'points'
-    }
+      field: 'steps'
+    },
   }, 
   {
     freezeTableName: true // Model tableName will be the same as the model name

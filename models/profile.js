@@ -8,6 +8,15 @@ var Profile = db.define('profile',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true
     },
+    userId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'userId',
+      field: 'user_id',
+    },
     age: {
       type: Sequelize.INTEGER,
       field: 'age'
