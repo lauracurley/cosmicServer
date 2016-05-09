@@ -19,6 +19,7 @@ module.exports.authorize = function (req, res) {
     form: {
       code: code,
       grant_type: 'authorization_code',
+      redirect_uri: 'icymicy://foo',
     },
   };
   // Post to fitbit api to retrieve refresh token and access token .
