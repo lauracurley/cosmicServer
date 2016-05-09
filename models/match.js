@@ -26,7 +26,7 @@ var Match = db.define('match',
       name: 'likedUserId',
       field: 'liked_user_id',
     },
-    cost: {
+    steps: {
       type: Sequelize.INTEGER,
       field: 'steps'
     }

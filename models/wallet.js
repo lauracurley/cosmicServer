@@ -17,7 +17,7 @@ var Wallet = db.define('wallet',
       name: 'userId',
       field: 'user_id',
     },
-    points: {
+    steps: {
       type: Sequelize.INTEGER,
       field: 'steps'
     },
