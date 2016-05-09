@@ -6,31 +6,31 @@ var User = db.define('users',
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
-      primaryKey: true
+      primaryKey: true,
     },
     email: {
       type: Sequelize.STRING,
-      field: 'email'
+      field: 'email',
     },
     firstName: {
       type: Sequelize.STRING,
-      field: 'first_name' // Will result in an attribute that is firstName when user facing but first_name in the database
+      field: 'first_name',
     },
     lastName: {
       type: Sequelize.STRING,
-      field: 'last_name'
+      field: 'last_name',
     },
-    facebookID: {
+    facebookId: {
       type: Sequelize.STRING,
-      field: 'facebook_id'
+      field: 'facebook_id',
     },
     fitbitToken: {
       type: Sequelize.STRING,
-      field: 'fitbit_token'
-    }
-  }, 
+      field: 'fitbit_token',
+    },
+  },
   {
-    freezeTableName: true // Model tableName will be the same as the model name
+    freezeTableName: true, // Model tableName will be the same as the model name
   }
 );
 

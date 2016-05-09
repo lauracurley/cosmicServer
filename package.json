@@ -29,6 +29,7 @@
     "morgan": "^1.7.0",
     "path": "^0.12.7",
     "pg": "^4.5.5",
+    "request": "^2.72.0",
     "sequelize": "^3.22.0"
   },
   "devDependencies": {
