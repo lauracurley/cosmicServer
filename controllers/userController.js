@@ -6,7 +6,7 @@ module.exports.saveOne = function (req, res) {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    facebook_id: req.body.facebookID,
+    facebookId: req.body.facebookId,
   };
   User
     .findOrCreate({ where: userData })
