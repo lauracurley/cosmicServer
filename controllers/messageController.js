@@ -19,6 +19,7 @@ module.exports.saveOne = function (req, res) {
     };
 
     Message.create(_updatedMessageData).then(function(message) {
+      console.log('MESSAGE: ', message.dataValues);
       res.status(201).json(message.dataValues);
     }) 
   });

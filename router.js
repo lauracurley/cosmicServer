@@ -12,8 +12,6 @@ var path = require('path');
 
 module.exports = (app, express) => {
 
-
-  // EXAMPLE CODE:
   app.post('/api/fitbit', fitbitController.authorize);
   
   app.post('/auth', userController.isAuthed);

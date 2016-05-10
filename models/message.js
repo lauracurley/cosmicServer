@@ -4,9 +4,12 @@ var db = require('../database/db.js');
 var Message = db.define('message',
   {
     id: {
+      // type: Sequelize.INTEGER,
+      // autoIncrement: true,
+      // primaryKey: true,
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
-      primaryKey: true
+      primaryKey: true,
     },
     fromUserId: {
       type: Sequelize.INTEGER,
