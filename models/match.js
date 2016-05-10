@@ -1,12 +1,12 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var Match = db.define('match',
+const Match = db.define('match',
   {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
-      primaryKey: true
+      primaryKey: true,
     },
     likerUserId: {
       type: Sequelize.INTEGER,
@@ -28,11 +28,11 @@ var Match = db.define('match',
     },
     steps: {
       type: Sequelize.INTEGER,
-      field: 'steps'
-    }
-  }, 
+      field: 'steps',
+    },
+  },
   {
-    freezeTableName: true // Model tableName will be the same as the model name
+    freezeTableName: true, // Model tableName will be the same as the model name
   }
 );
 
