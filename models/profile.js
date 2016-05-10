@@ -9,7 +9,7 @@ var Profile = db.define('profile',
       primaryKey: true,
     },
     userId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',
@@ -32,16 +32,7 @@ var Profile = db.define('profile',
     picturePath: {
       type: Sequelize.STRING,
       field: 'picture_path',
-    },
-    userId: {
-      type: Sequelize.UUID,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
-    },
+    }
   },
   {
     freezeTableName: true, // Model tableName will be the same as the model name
