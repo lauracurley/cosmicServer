@@ -25,6 +25,13 @@ module.exports.saveOne = function (req, res) {
 };
 
 module.exports.fetchAll = function (req, res) {
+  var _idArray = req.query.users.split(' ');
+  var _users = {
+    fromUserFacebookId: _idArray[0],
+    toUserId: Number(_idArray[1])
+  };
+  console.log('USERS: ', _users);
+
   res.status(200).end();
 };
 
