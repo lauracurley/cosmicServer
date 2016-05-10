@@ -27,10 +27,10 @@ module.exports.saveOne = function (req, res) {
 };
 
 module.exports.fetchAll = function (req, res) {
-  var _idArray = req.query.users.split(' ');
+
   var _users = {
-    fromUserFacebookId: _idArray[0],
-    toUserId: Number(_idArray[1]),
+    fromUserFacebookId: req.query.fromUserFacebookId,
+    toUserId: req.query.toUserId,
   };
 
   // First, find the user id that corresponds to the "from" user's facebook id
@@ -38,7 +38,7 @@ module.exports.fetchAll = function (req, res) {
     var _fromUserId = fromUser.get('id');
     var _updatedUsers = {
       fromUserId: _fromUserId,
-      toUserId: Number(_idArray[1]),
+      toUserId: Number(_users.toUserId),
     };
 
     // Then, fetch all the messages that are shared between the 2 users
@@ -51,6 +51,7 @@ module.exports.fetchAll = function (req, res) {
       .then(function (messages) {
         var messagesArray = [];
         for (var i = 0; i < messages.length; i++) {
+          // Attach facebook id to the "from" user so that the client side can access it. The client side only has access to the facebook id and not the user ids
           if (messages[i].dataValues.fromUserId === _updatedUsers.fromUserId) {
             messages[i].dataValues.fromUserFacebookId = _users.fromUserFacebookId;
           }
