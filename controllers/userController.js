@@ -9,6 +9,7 @@ module.exports.saveOne = function (req, res) {
     facebookId: req.body.facebookId,
   };
   User
+    // this should be facebookId, right? otherwise we get dupes if any other field isn't identical
     .findOrCreate({ where: userData })
     .spread(function (user) {
       res.status(201).json(user.dataValues);

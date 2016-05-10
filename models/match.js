@@ -9,7 +9,7 @@ var Match = db.define('match',
       primaryKey: true
     },
     likerUserId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',
@@ -18,7 +18,7 @@ var Match = db.define('match',
       field: 'liker_user_id',
     },
     likedUserId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',

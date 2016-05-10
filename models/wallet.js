@@ -9,7 +9,7 @@ var Wallet = db.define('wallet',
       primaryKey: true
     },
     userId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',

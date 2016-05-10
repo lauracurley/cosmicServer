@@ -9,7 +9,7 @@ var Message = db.define('message',
       primaryKey: true
     },
     fromUserId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',
@@ -18,7 +18,7 @@ var Message = db.define('message',
       field: 'from_user_id',
     },
     toUserId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       references: {
         model: 'users',
         key: 'id',
