@@ -31,11 +31,6 @@ module.exports.fetchAll = function (req, res) {
     toUserId: Number(_idArray[1]),
   };
 
-  // Message.findAll({ where: { from_user_id: 1 } }).then(function (messages) {
-  //   console.log('MESSAGES: ', messages.dataValues);
-  //   res.status(200).send(messages.dataValues);
-  // });
-
   User.findOne({ where: { facebookId: _users.fromUserFacebookId } }).then(function (fromUser) {
     var _fromUserId = fromUser.get('id');
     var _updatedUsers = {
@@ -50,11 +45,8 @@ module.exports.fetchAll = function (req, res) {
       // console.log('MESSAGES: ', messagesArray);
       res.status(200).json(messagesArray);
     });
-
     
   });
-
-
 
 };
 
