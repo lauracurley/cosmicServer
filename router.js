@@ -19,6 +19,9 @@ module.exports = (app, express) => {
   app.post('/api/user', userController.saveOne);
   app.post('/api/user', userController.fetchOne);
   app.get('/api/user', userController.fetchAll);
+  app.get('/api/message', userController.saveOne);
+  app.get('/api/message', userController.fetchAll);
+
 
   app.post('/api/profile', profileController.saveOne);
   app.post('/api/profile', profileController.fetchOne);
