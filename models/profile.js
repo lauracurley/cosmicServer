@@ -8,15 +8,6 @@ var Profile = db.define('profile',
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
-    userId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
-    },
     age: {
       type: Sequelize.INTEGER,
       field: 'age',
@@ -32,7 +23,20 @@ var Profile = db.define('profile',
     picturePath: {
       type: Sequelize.STRING,
       field: 'picture_path',
-    }
+    },
+    userId: {
+      type: Sequelize.UUID,
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+      name: 'userId',
+      field: 'user_id',
+    },
+    steps: {
+      type: Sequelize.INTEGER,
+      field: 'steps',
+    },
   },
   {
     freezeTableName: true, // Model tableName will be the same as the model name
