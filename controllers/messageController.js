@@ -9,6 +9,7 @@ module.exports.saveOne = function (req, res) {
     timestamp: req.body.timestamp,
   };
 
+  // First, find the user id that corresponds to the "from" user's facebook id
   User.findOne({ where: { facebookId: messageData.fromUserFacebookId } }).then(function (fromUser) {
     var _fromUserId = fromUser.get('id');
     var _updatedMessageData = {
@@ -18,6 +19,7 @@ module.exports.saveOne = function (req, res) {
       timestamp: req.body.timestamp,
     };
 
+    // Then, save the message
     Message.create(_updatedMessageData).then(function(message) {
       res.status(201).json(message.dataValues);
     }) 
@@ -31,20 +33,32 @@ module.exports.fetchAll = function (req, res) {
     toUserId: Number(_idArray[1]),
   };
 
+  // First, find the user id that corresponds to the "from" user's facebook id
   User.findOne({ where: { facebookId: _users.fromUserFacebookId } }).then(function (fromUser) {
     var _fromUserId = fromUser.get('id');
     var _updatedUsers = {
       fromUserId: _fromUserId,
       toUserId: Number(_idArray[1]),
     };
-    Message.findAll({ where: { $and: [ { from_user_id: _updatedUsers.fromUserId }, { to_user_id: _updatedUsers.toUserId } ] } }).then(function (messages) {
-      var messagesArray = [];
-      for (var i = 0; i < messages.length; i++) {
-        messagesArray.push(messages[i].dataValues);
-      }
-      // console.log('MESSAGES: ', messagesArray);
-      res.status(200).json(messagesArray);
-    });
+
+    // Then, fetch all the messages that are shared between the 2 users
+    Message
+      .findAll({
+        where: {
+          $or: [ { $and: [ { from_user_id: _updatedUsers.fromUserId }, { to_user_id: _updatedUsers.toUserId } ] }, { $and: [ { from_user_id: _updatedUsers.toUserId }, { to_user_id: _updatedUsers.fromUserId } ] } ]
+        }
+      })
+      .then(function (messages) {
+        var messagesArray = [];
+        for (var i = 0; i < messages.length; i++) {
+          if (messages[i].dataValues.fromUserId === _updatedUsers.fromUserId) {
+            messages[i].dataValues.fromUserFacebookId = _users.fromUserFacebookId;
+          }
+          messagesArray.push(messages[i].dataValues);
+        }
+        // console.log('MESSAGES: ', messagesArray);
+        res.status(200).json(messagesArray);
+      });
     
   });
 
