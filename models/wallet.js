@@ -29,3 +29,5 @@ var Wallet = db.define('wallet',
 
 
 module.exports = Wallet;
+
+
