@@ -28,11 +28,34 @@ module.exports.fetchAll = function (req, res) {
   var _idArray = req.query.users.split(' ');
   var _users = {
     fromUserFacebookId: _idArray[0],
-    toUserId: Number(_idArray[1])
+    toUserId: Number(_idArray[1]),
   };
-  console.log('USERS: ', _users);
 
-  res.status(200).end();
+  // Message.findAll({ where: { from_user_id: 1 } }).then(function (messages) {
+  //   console.log('MESSAGES: ', messages.dataValues);
+  //   res.status(200).send(messages.dataValues);
+  // });
+
+  User.findOne({ where: { facebookId: _users.fromUserFacebookId } }).then(function (fromUser) {
+    var _fromUserId = fromUser.get('id');
+    var _updatedUsers = {
+      fromUserId: _fromUserId,
+      toUserId: Number(_idArray[1]),
+    };
+    Message.findAll({ where: { $and: [ { from_user_id: _updatedUsers.fromUserId }, { to_user_id: _updatedUsers.toUserId } ] } }).then(function (messages) {
+      var messagesArray = [];
+      for (var i = 0; i < messages.length; i++) {
+        messagesArray.push(messages[i].dataValues);
+      }
+      // console.log('MESSAGES: ', messagesArray);
+      res.status(200).json(messagesArray);
+    });
+
+    
+  });
+
+
+
 };
 
 
