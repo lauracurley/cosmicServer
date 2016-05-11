@@ -1,7 +1,7 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var Profile = db.define('profile',
+const Profile = db.define('profile',
   {
     id: {
       type: Sequelize.UUID,
@@ -23,15 +23,6 @@ var Profile = db.define('profile',
     picturePath: {
       type: Sequelize.STRING,
       field: 'picture_path',
-    },
-    userId: {
-      type: Sequelize.UUID,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
     },
     steps: {
       type: Sequelize.INTEGER,
