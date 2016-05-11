@@ -26,9 +26,13 @@ const Match = db.define('match',
       name: 'likedUserId',
       field: 'liked_user_id',
     },
-    status: {
+    likerStatus: {
       type: Sequelize.STRING,
-      field: 'status',
+      field: 'liker_status',
+    },
+    likedStatus: {
+      type: Sequelize.STRING,
+      field: 'liked_status',
     },
   },
   {
