@@ -1,12 +1,12 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var User = db.define('users',
+const User = db.define('users',
   {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     email: {
       type: Sequelize.STRING,
@@ -33,6 +33,5 @@ var User = db.define('users',
     freezeTableName: true, // Model tableName will be the same as the model name
   }
 );
-
 
 module.exports = User;

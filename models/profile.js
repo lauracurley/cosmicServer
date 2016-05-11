@@ -1,21 +1,12 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var Profile = db.define('profile',
+const Profile = db.define('profile',
   {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
-    },
-    userId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
     },
     age: {
       type: Sequelize.INTEGER,
@@ -32,7 +23,11 @@ var Profile = db.define('profile',
     picturePath: {
       type: Sequelize.STRING,
       field: 'picture_path',
-    }
+    },
+    steps: {
+      type: Sequelize.INTEGER,
+      field: 'steps',
+    },
   },
   {
     freezeTableName: true, // Model tableName will be the same as the model name

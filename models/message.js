@@ -1,7 +1,7 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var Message = db.define('message',
+const Message = db.define('message',
   {
     id: {
       type: Sequelize.UUID,
@@ -28,17 +28,16 @@ var Message = db.define('message',
     },
     text: {
       type: Sequelize.STRING,
-      field: 'text'
+      field: 'text',
     },
     timestamp: {
       type: Sequelize.STRING,
-      field: 'timestamp'
-    }
-  }, 
+      field: 'timestamp',
+    },
+  },
   {
-    freezeTableName: true // Model tableName will be the same as the model name
+    freezeTableName: true, // Model tableName will be the same as the model name
   }
 );
-
 
 module.exports = Message;

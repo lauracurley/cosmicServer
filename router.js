@@ -1,19 +1,20 @@
-var fitnessController = require('./controllers/fitnessController.js');
-var matchController = require('./controllers/matchController.js');
-var messageController = require('./controllers/messageController.js');
-var profileController = require('./controllers/profileController.js');
-var userController = require('./controllers/userController.js');
-var walletController = require('./controllers/walletController.js');
-var fitbitController = require('./controllers/fitbitController.js');
+const fitnessController = require('./controllers/fitnessController.js');
+const matchController = require('./controllers/matchController.js');
+const messageController = require('./controllers/messageController.js');
+const profileController = require('./controllers/profileController.js');
+const userController = require('./controllers/userController.js');
+const walletController = require('./controllers/walletController.js');
+const fitbitController = require('./controllers/fitbitController.js');
 
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 
 
 module.exports = (app, express) => {
 
+  // EXAMPLE CODE:
+  app.get('/api/match', matchController.serveMatches);
   app.post('/api/fitbit', fitbitController.authorize);
-  
   app.post('/auth', userController.isAuthed);
   app.post('/api/user', userController.saveOne);
   app.post('/api/user', userController.fetchOne);
