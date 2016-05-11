@@ -1,21 +1,12 @@
-var Sequelize = require('sequelize');
-var db = require('../database/db.js');
+const Sequelize = require('sequelize');
+const db = require('../database/db.js');
 
-var Fitness = db.define('fitness',
+const Fitness = db.define('fitness',
   {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
-    },
-    userId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id',
-      },
-      name: 'userId',
-      field: 'user_id',
     },
     steps: {
       type: Sequelize.INTEGER,
