@@ -1,4 +1,3 @@
-
 From cosmicServer directory:
 dropdb cosmictornado
 createdb cosmictornado
@@ -18,4 +17,3 @@ COPY profile FROM '../../../../Users/Laura/hr41/cosmicServer/database/dummydata/
 COPY match FROM '../../../../Users/Laura/hr41/cosmicServer/database/dummydata/match.csv' ( FORMAT CSV, DELIMITER(',') );
 COPY message FROM '../../../../Users/Laura/hr41/cosmicServer/database/dummydata/message.csv' ( FORMAT CSV, DELIMITER(',') );
 COPY wallet FROM '../../../../Users/Laura/hr41/cosmicServer/database/dummydata/wallet.csv' ( FORMAT CSV, DELIMITER(',') );
-

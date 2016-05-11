@@ -6,7 +6,7 @@ var Message = db.define('message',
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV1,
-      primaryKey: true
+      primaryKey: true,
     },
     fromUserId: {
       type: Sequelize.INTEGER,
