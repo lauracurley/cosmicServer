@@ -3,6 +3,11 @@ const db = require('../database/db.js');
 
 const NoInterest = db.define('no_interest',
   {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     fromUserId: {
       type: Sequelize.INTEGER,
       references: {

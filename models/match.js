@@ -3,6 +3,11 @@ const db = require('../database/db.js');
 
 const Match = db.define('match',
   {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     fromUserId: {
       type: Sequelize.INTEGER,
       references: {
