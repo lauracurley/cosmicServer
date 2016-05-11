@@ -5,17 +5,35 @@ module.exports = function() {
   var Message = require('../models/message.js');
   var Profile = require('../models/profile.js');
   var Wallet = require('../models/wallet.js');
-  var User = require('../models/user.js')
+  var User = require('../models/user.js');
+  var fitnessController = require('../controllers/fitnessController.js');
+  var userController = require('../controllers/userController.js');
+  var fitbitController = require('../controllers/fitbitController.js');
+  var matchController = require('../controllers/matchController.js');
+  var messageController = require('../controllers/messageController.js');
+  var profileController = require('../controllers/profileController.js');
+  var walletController = require('../controllers/walletController.js');
 
   // Not sure if this block is right...
-  // User.belongsToMany(User, {through: 'Match'});
-  // User.belongsToMany(User, {through: 'Message'});
-
-  // Place.belongsToMany(User, {through: 'UserPlace'});
-  // User.belongsToMany(Place, {through: 'UserPlace'});
 
   // Place.sync(); //use {force: true} option to drop existing tables
   // User.sync();
+
+  User.hasOne(Wallet, { foreignKey: {
+    name: 'userId',
+    field: 'user_id',
+  } });
+  User.hasOne(Profile, { foreignKey: {
+    name: 'userId',
+    field: 'user_id',
+  } });
+  User.hasOne(Fitness, { foreignKey: {
+    name: 'userId',
+    field: 'user_id',
+  } });
+
   db.sync(); //Using this instead of syncing place and user separately creates the joint table UserPlace in the database.
+  // userController.serveUsers("allenanderson",'male');
+  // walletController.spendSteps("allenanderson","3");
 };
 
