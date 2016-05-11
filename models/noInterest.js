@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../database/db.js');
 
-const Match = db.define('match',
+const NoInterest = db.define('no_interest',
   {
     fromUserId: {
       type: Sequelize.INTEGER,
@@ -27,4 +27,4 @@ const Match = db.define('match',
   }
 );
 
-module.exports = Match;
+module.exports = NoInterest;
