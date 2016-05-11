@@ -30,6 +30,8 @@ module.exports = (app, express) => {
   app.post('/api/profile', profileController.saveOne);
   app.post('/api/profile', profileController.fetchOne);
 
+  app.get('/api/match', matchController.fetchAll);
+
 
 };
 
