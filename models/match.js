@@ -4,8 +4,8 @@ const db = require('../database/db.js');
 const Match = db.define('match',
   {
     id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV1,
       primaryKey: true,
     },
     fromUserId: {
