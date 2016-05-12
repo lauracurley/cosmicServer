@@ -3,10 +3,9 @@ const User = require('../models/user.js');
 const Match = require('../models/match.js');
 const Profile = require('../models/profile.js');
 const Fitness = require('../models/fitness.js');
-const Sequelize = require('sequelize');
 
 module.exports.saveOne = (req, res) => {
-  var userData = {
+  const userData = {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -15,7 +14,7 @@ module.exports.saveOne = (req, res) => {
   User
     // this should be facebookId, right? otherwise we get dupes if any other field isn't identical
     .findOrCreate({ where: userData })
-    .spread( (user) => {
+    .spread((user) => {
       res.status(201).json(user.dataValues);
     });
 };
@@ -53,28 +52,22 @@ module.exports.serveUsers = (req, res) => {
   User.findOne({ where: { facebookId: facebookId } }).then((user) => {
     const userId = user.get('id');
     Match.findAll({
-      where: Sequelize.or(
-        { likedUserId: userId },
-        { likerUserId: userId }),
-      attributes: ['likedUserId', 'likerUserId'],
+      where: {
+        $or: [{ from_user_id: userId }, { to_user_id: userId }],
+      },
     }).then((matches) => {
-      const matchedIds = matches.map((match) => {
-        if (match.get('likedUserId') === userId) {
-          return match.get('likerUserId');
-        } else if (match.get('likerUserId') === userId) {
-          return match.get('likedUserId');
-        }
-        return null;
+      const matchIds = matches.map((match) =>  {
+        return match.get('fromUserId') === userId ? match.get('toUserId') : userId;
       });
       User.findAll({
-        where: { id: { $notIn: matchedIds } },
+        where: { id: { $notIn: matchIds } },
         include: [
           {
             model: Profile,
             where: { gender: targetGender },
           },
           {
-            model: Fitness, 
+            model: Fitness,
           },
         ],
       }).then((usersData) => {
