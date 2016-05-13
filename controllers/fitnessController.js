@@ -17,7 +17,7 @@ module.exports.saveFitbit = (fitnessData, facebookId) => {
         Wallet.findOrCreate({ where: { userId: user.get('id') } })
           .then(wallet => {
             wallet[0].update({
-              steps: fitnessData.steps,
+              steps: 5000,
             });
           });
       });
