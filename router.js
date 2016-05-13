@@ -14,8 +14,11 @@ const path = require('path');
 
 
 module.exports = (app, express) => {
-
   // EXAMPLE CODE:
+  app.get('/api/wallet', walletController.fetchSteps);
+
+  app.post('/api/matchRequest/', matchController.saveMatchRequest);
+
   app.post('/api/fitbit', fitbitController.authorize);
   app.get('/api/users', userController.serveUsers);
   app.post('/api/fitbit', fitbitController.authorize);

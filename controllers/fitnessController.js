@@ -1,10 +1,11 @@
 const Fitness = require('../models/fitness.js');
 const User = require('../models/user.js');
+const Wallet = require('../models/wallet.js');
 
 module.exports.saveFitbit = (fitnessData, facebookId) => {
-  User.findOne({ where: { facebookId: facebookId } }).then((user) => {
+  User.findOne({ where: { facebookId } }).then(user => {
     Fitness.findOrCreate({ where: { userId: user.get('id') } })
-      .then((fitness) => {
+      .then(fitness => {
         fitness[0].update({
           steps: fitnessData.steps,
           restingHeartRate: fitnessData.restingHeartRate,
@@ -13,6 +14,12 @@ module.exports.saveFitbit = (fitnessData, facebookId) => {
           fairlyActiveMinutes: fitnessData.fairlyActiveMinutes,
           veryActiveMinutes: fitnessData.veryActiveMinutes,
         });
+        Wallet.findOrCreate({ where: { userId: user.get('id') } })
+          .then(wallet => {
+            wallet[0].update({
+              steps: fitnessData.steps,
+            });
+          });
       });
   });
 };
