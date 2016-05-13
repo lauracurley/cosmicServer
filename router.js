@@ -32,7 +32,7 @@ module.exports = (app, express) => {
   app.post('/api/profile', profileController.fetchOne);
 
   app.get('/api/match', matchController.fetchAll);
-
+  app.delete('/api/match', matchController.deleteOne);
 
 };
 
