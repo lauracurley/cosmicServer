@@ -7,7 +7,7 @@ module.exports.fetchAll = (req, res) => {
   var fromUserFacebookId = req.query.fromUserFacebookId;
 
   // First, find the user id that corresponds to the given facebook id
-  User.findOne({ where: { facebookId: fromUserFacebookId } }).then(function (fromUser) {
+  User.findOne({ where: { facebookId: fromUserFacebookId } }).then((fromUser) => {
     var fromUserId = fromUser.get('id');
 
     // Then, find an array of matches of the "other" users ids 
@@ -17,7 +17,7 @@ module.exports.fetchAll = (req, res) => {
           $or: [{from_user_id: fromUserId}, {to_user_id: fromUserId}]
         }
       })
-      .then(function(matches) {
+      .then((matches) => {
         var matchesArray = [];
         for (var i = 0; i < matches.length; i++) {
           var otherUserId = 
@@ -27,7 +27,7 @@ module.exports.fetchAll = (req, res) => {
         }
 
         // Then, find an array contain the firstName, lastName, etc of the other users
-        User.findAll({ where: { id: matchesArray } }).then(function(matches) {
+        User.findAll({ where: { id: matchesArray } }).then((matches) => {
           var matchesArray = [];
           for (var i = 0; i < matches.length; i++) {
             matchesArray.push(matches[i].dataValues);
@@ -47,7 +47,7 @@ module.exports.deleteOne = (req, res) => {
   var toUserId = req.query.toUserId;
 
   // First, find the user id that corresponds to the given facebook id
-  User.findOne({ where: { facebookId: fromUserFacebookId } }).then(function (fromUser) {
+  User.findOne({ where: { facebookId: fromUserFacebookId } }).then((fromUser) => {
     var fromUserId = fromUser.get('id');
 
     Match
@@ -56,11 +56,11 @@ module.exports.deleteOne = (req, res) => {
           $or: [ { $and: [ { from_user_id: fromUserId }, { to_user_id: toUserId } ] }, { $and: [ { from_user_id: toUserId }, { to_user_id: fromUserId } ] } ]
         }
       })
-      .then(function(deleted) {
+      .then((deleted) => {
         MatchDelete.create({
           fromUserId: fromUserId,
           toUserId: toUserId,
-        }).then(function(user) {
+        }).then((user) => {
           res.status(200).json(user.dataValues);
         })
       })
