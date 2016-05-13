@@ -1,8 +1,10 @@
-"use strict";
+'use strict';
 const User = require('../models/user.js');
 const Match = require('../models/match.js');
 const Profile = require('../models/profile.js');
 const Fitness = require('../models/fitness.js');
+const MatchRequest = require('../models/matchRequest.js');
+const MatchDelete = require('../models/matchDelete.js');
 
 module.exports.saveOne = (req, res) => {
   const userData = {
@@ -30,7 +32,7 @@ module.exports.fetchAll = (req, res) => {
 // If a refresh token is saved to the database the user is authorized
 module.exports.isAuthed = (req, res) => {
   const facebookId = req.query.facebookId;
-  User.findOne({ where: { facebookId: facebookId } })
+  User.findOne({ where: { facebookId } })
     .then((user) => {
       if (user && user.get('fitbitToken')) {
         res.status(201).json({ isAuthed: true });
@@ -49,40 +51,69 @@ module.exports.serveUsers = (req, res) => {
   } else if (gender === 'male') {
     targetGender = 'female';
   }
-  User.findOne({ where: { facebookId: facebookId } }).then((user) => {
+  User.findOne({ where: { facebookId } }).then(user => {
     const userId = user.get('id');
     Match.findAll({
       where: {
         $or: [{ from_user_id: userId }, { to_user_id: userId }],
       },
-    }).then((matches) => {
-      const matchIds = matches.map((match) =>  {
+    }).then(matches => {
+      const matchIds = matches.map(match => {
         return match.get('fromUserId') === userId ? match.get('toUserId') : userId;
       });
-      User.findAll({
-        where: { id: { $notIn: matchIds } },
-        include: [
-          {
-            model: Profile,
-            where: { gender: targetGender },
+      MatchRequest.findAll({
+        where: {
+          fromUserId: userId },
+      }).then(matchRequests => {
+        matchRequests.forEach(matchRequest => {
+          matchIds.push(matchRequest.get('toUserId'));
+        });
+        MatchDelete.findAll({
+          where: {
+            $or: [{ from_user_id: userId }, { to_user_id: userId }],
           },
-          {
-            model: Fitness,
-          },
-        ],
-      }).then((usersData) => {
-        const userQueue = usersData.map((userData) => {
-          return ({
-            firstName: userData.get('firstName'),
-            picturePath: userData.profile.get('picturePath'),
-            age: userData.profile.get('age'),
-            steps: userData.profile.get('steps'),
-            restingHeartRate: userData.fitness.get('restingHeartRate'),
+        }).then(matchDeletes => {
+          matchDeletes.forEach(matchDelete => {
+            matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : userId);
+          });
+          User.findAll({
+            where: { id: { $notIn: matchIds } },
+            include: [
+              {
+                model: Profile,
+                where: { gender: targetGender },
+              },
+              {
+                model: Fitness,
+              },
+            ],
+          }).then(usersData => {
+            if (usersData.length) {
+              const userQueue = usersData.map(userData => {
+                return ({
+                  id: userData.get('id'),
+                  firstName: userData.get('firstName'),
+                  picturePath: userData.profile.get('picturePath'),
+                  age: userData.profile.get('age'),
+                  steps: userData.profile.get('steps'),
+                  restingHeartRate: userData.fitness.get('restingHeartRate'),
+                });
+              });
+              res.status(200).json({ userQueue });
+            } else {
+              const userQueue = [{
+                id: null,
+                firstName: 'Grey Animal',
+                picturePath: '',
+                age: 'Extremely wise',
+                steps: 99999999,
+                restingHeartRate: 220,
+              }];
+              res.status(200).json({ userQueue });
+            }
           });
         });
-        res.status(200).json({ userQueue: userQueue });
       });
     });
   });
 };
-
