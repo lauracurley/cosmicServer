@@ -70,7 +70,7 @@ module.exports.deleteOne = (req, res) => {
   });
 };
 
-module.exports.saveMatchRequest = (req, res) => {
+module.exports.saveOne = (req, res) => {
   const facebookId = req.body.facebookId;
   const likedUserId = req.body.likedUserId;
     // find match price
@@ -79,11 +79,11 @@ module.exports.saveMatchRequest = (req, res) => {
     // add match request to match request table
     User.findOne({ where: { facebookId } }).then((user) => {
       const userId = user.get('id');
-      MatchRequest.create({
+      Match.create({
         fromUserId: userId,
         toUserId: likedUserId,
       }).then(() => {
-        MatchRequest.findOne({
+        Match.findOne({
           where: {
             fromUserId: likedUserId,
             toUserId: userId,
