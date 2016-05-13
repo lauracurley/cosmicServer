@@ -1,4 +1,5 @@
 const Match = require('../models/match.js');
+const MatchDelete = require('../models/matchDelete.js');
 const User = require('../models/user.js');
 
 module.exports.fetchAll = (req, res) => {
@@ -36,6 +37,33 @@ module.exports.fetchAll = (req, res) => {
         });
       });
 
+  });
+
+};
+
+module.exports.deleteOne = (req, res) => {
+  
+  var fromUserFacebookId = req.query.fromUserFacebookId;
+  var toUserId = req.query.toUserId;
+
+  // First, find the user id that corresponds to the given facebook id
+  User.findOne({ where: { facebookId: fromUserFacebookId } }).then(function (fromUser) {
+    var fromUserId = fromUser.get('id');
+
+    Match
+      .destroy({
+        where: {
+          $or: [ { $and: [ { from_user_id: fromUserId }, { to_user_id: toUserId } ] }, { $and: [ { from_user_id: toUserId }, { to_user_id: fromUserId } ] } ]
+        }
+      })
+      .then(function(deleted) {
+        MatchDelete.create({
+          fromUserId: fromUserId,
+          toUserId: toUserId,
+        }).then(function(user) {
+          res.status(200).json(user.dataValues);
+        })
+      })
   });
 
 };
