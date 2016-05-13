@@ -23,10 +23,13 @@ module.exports.fetchAll = (req, res) => {
       .then((matches) => {
         var matchesArray = [];
         for (var i = 0; i < matches.length; i++) {
-          var otherUserId = 
-            matches[i].dataValues.fromUserId === fromUserId ? matches[i].dataValues.toUserId : fromUserId;
+          var otherUserId;
+          if (matches[i].dataValues.fromUserId === fromUserId) {
+            matchesArray.push(matches[i].dataValues.toUserId)
+          } else {
+            matchesArray.push(matches[i].dataValues.fromUserId)
+          }
 
-          matchesArray.push(otherUserId);
         }
 
         // Then, find an array contain the firstName, lastName, etc of the other users
