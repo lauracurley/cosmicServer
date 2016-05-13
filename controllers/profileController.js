@@ -8,6 +8,7 @@ module.exports.saveOne = function (req, res) {
     gender: req.body.gender,
     zipCode: req.body.zipCode,
     picturePath: req.body.picturePath,
+    steps: 500,
   };
   User.findOne({ where: { facebookId: facebookId } }).then(function (user) {
     Profile.findOrCreate({ where: { userId: user.get('id') } })

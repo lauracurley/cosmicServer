@@ -96,7 +96,12 @@ module.exports.saveOne = (req, res) => {
             // let the client know they have a new a match
             res.status(201).json({ steps: wallet.steps, newMatch: true });
           } else {
-            res.status(201).json({ steps: wallet.steps, newMatch: false });
+            Match.create({
+              fromUserId: likedUserId,
+              toUserId: userId,
+            }).then(() => {
+              res.status(201).json({ steps: wallet.steps, newMatch: false });
+            });
           }
         });
       });
