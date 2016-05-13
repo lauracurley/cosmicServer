@@ -76,20 +76,23 @@ module.exports.serveUsers = (req, res) => {
           matchDeletes.forEach(matchDelete => {
             matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : userId);
           });
+          console.log('here are the matchIds', matchIds);
           User.findAll({
-            where: { id: { $notIn: matchIds } },
+            where: { id: { $ne: userId } },
             include: [
               {
                 model: Profile,
-                where: { gender: targetGender },
+                where: {},
               },
               {
                 model: Fitness,
+                where: {},
               },
             ],
           }).then(usersData => {
             if (usersData.length) {
               const userQueue = usersData.map(userData => {
+                console.log(userData);
                 return ({
                   id: userData.get('id'),
                   firstName: userData.get('firstName'),
