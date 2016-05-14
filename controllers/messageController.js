@@ -2,6 +2,8 @@ var Message = require('../models/message.js');
 var User = require('../models/user.js');
 
 module.exports.saveOne = function (req, res) {
+
+  // res.send(200);
   var messageData = {
     fromUserFacebookId: req.body.fromUserFacebookId, 
     toUserId: req.body.toUserId,
