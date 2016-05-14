@@ -20,10 +20,14 @@ io.on('connection', (socket) => {
   socket.on('connectedFacebookId', function(facebookId) {
     loggedIn[facebookId] = socket.id;
   });
-
+ 
   socket.on('notifyOtherUserToFetchLast', function() {
 
   }); 
+
+  socket.on('disconnect', function() {
+    delete loggedIn[facebookId];
+  });
 });
 
 server.listen(port, (err) => {
