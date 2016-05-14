@@ -1,5 +1,6 @@
 
 module.exports = {
+
   errorLogger: (error, req, res, next) =>  {
     // log the error then send it to the next middleware in
     console.error(error.stack);
@@ -9,6 +10,7 @@ module.exports = {
     // send error message to client
     // message for gracefull error handling on app
     res.send(500, {error: error.message});
-  }
+  },
+
 
 };

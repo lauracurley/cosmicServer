@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'production') {
     define: {
       underscored: true,
     },
+    logging: false, //prevent sequelize from outputting SQL to the console on execution of a query
   });
 } else {
   db = new Sequelize('cosmictornado', null, null, {
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV === 'production') {
     define: {
       underscored: true,
     },
+    logging: false, //prevent sequelize from outputting SQL to the console on execution of a query
   });
 }
 
