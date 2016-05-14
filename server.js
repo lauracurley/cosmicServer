@@ -13,20 +13,30 @@ require('./utilities/middleware.js')(app, express); //config app with required m
 require('./router.js')(app, express); //define routes for app
 
 // Socket logic begins here:
-var loggedIn = {};
+// var connected = {};
 
 io.on('connection', (socket) => {
 
   socket.on('connectedFacebookId', function(facebookId) {
-    loggedIn[facebookId] = socket.id;
+    // connected[facebookId] = socket.id;
+    socket.join(facebookId);
   });
  
-  socket.on('notifyOtherUserToFetchLast', function() {
+  socket.on('notifyOtherUserToFetchLast', function(facebookIds) {
+    // If the other person is connected,
+    // if (connected.hasOwnProperty('10206426211234693')) { //CHANGE THIS TO A VARIABLE
+    // }
+    // console.log('Connected sockets: ', connected);
+    // io.to(facebookIds.toUserFacebookId).emit('fetchLast');
+    io.to('10206426211234693').emit('fetchLast');
+    // socket.emit('hello');
+    // socket.broadcast.to('10206426211234693').emit('hello');
+    // io.sockets.in('10206426211234693').emit('hello');
 
   }); 
 
   socket.on('disconnect', function() {
-    delete loggedIn[facebookId];
+    // delete connected[facebookId];
   });
 });
 
