@@ -76,7 +76,7 @@ module.exports.serveUsers = (req, res) => {
           matchDeletes.forEach(matchDelete => {
             matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : userId);
           });
-          console.log('here are the matchIds', matchIds);
+          // console.log('here are the matchIds', matchIds);
           User.findAll({
             where: { id: { $ne: userId } },
             include: [
@@ -92,7 +92,7 @@ module.exports.serveUsers = (req, res) => {
           }).then(usersData => {
             if (usersData.length) {
               const userQueue = usersData.map(userData => {
-                console.log(userData);
+                // console.log(userData);
                 return ({
                   id: userData.get('id'),
                   firstName: userData.get('firstName'),
