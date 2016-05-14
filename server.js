@@ -12,11 +12,14 @@ var port = process.env.PORT || 8000;
 require('./utilities/middleware.js')(app, express); //config app with required middleware
 require('./router.js')(app, express); //define routes for app
 
+// Socket logic begins here:
+var loggedIn = {};
+
 io.on('connection', (socket) => {
-  socket.on('testing', function(a) {
-    console.log('MADE ITTTTTTTTT',a);
+
+  socket.on('connectedFacebookId', function(facebookId) {
+    loggedIn[facebookId] = socket.id;
   });
-  socket.emit('asd');
 
   socket.on('notifyOtherUserToFetchLast', function() {
 
