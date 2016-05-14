@@ -15,6 +15,10 @@ const path = require('path');
 
 module.exports = (app, express) => {
   // EXAMPLE CODE:
+
+  app.get('/', function(req, res) {
+    res.sendfile(__dirname + '/public/index.html');
+  });
   app.get('/api/wallet', walletController.fetchSteps);
 
   app.post('/api/match/', matchController.saveOne);
