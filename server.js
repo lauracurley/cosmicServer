@@ -29,12 +29,12 @@ io.on('connection', (socket) => {
     console.log('Connected Rooms: ', socket.rooms);
   });
  
-  socket.on('notifyOtherUserToFetchLast', function(facebookIds) {
+  socket.on('notifyOtherUserToFetchLast', function(ids) {
     console.log('Connected on fetch: ', connected);
     console.log('Connected Rooms on fetch: ', socket.rooms);
-    console.log('Tell this person to fetch: ', facebookIds.toUserFacebookId, ' ', connected[facebookIds.toUserFacebookId]);
+    console.log('Tell this person to fetch: ', ids.toUserFacebookId, ' ', connected[ids.toUserFacebookId]);
     
-    var socketToFetch = connected[facebookIds.toUserFacebookId];
+    var socketToFetch = connected[ids.toUserFacebookId];
     // var socketToFetch = connected['10206426211234693'];
 
     // If the other person is connected...
@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
   }); 
 
   socket.on('disconnect', function() {
-    // delete connected[facebookId];
+    // Implement this if have time...
   });
 });
 
