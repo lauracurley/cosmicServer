@@ -60,7 +60,6 @@ module.exports.update = (req, res) => {
           const currentSteps = user.wallet.get('steps');
           const walletIncrease = lifetimeSteps - user.fitness.get('lifetimeSteps');
           user.wallet.set('steps', currentSteps + walletIncrease);
-          console.log(user.wallet.get('steps'));
           res.json(user.wallet.get('steps'));
         });
       });
