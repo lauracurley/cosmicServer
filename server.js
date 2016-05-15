@@ -34,12 +34,12 @@ io.on('connection', (socket) => {
     console.log('Connected Rooms on fetch: ', socket.rooms);
     console.log('Tell this person to fetch: ', ids.toUserFacebookId, ' ', connected[ids.toUserFacebookId]);
     
-    var socketToFetch = connected[ids.toUserFacebookId];
-    // var socketToFetch = connected['10206426211234693'];
+    // var socketToFetch = connected[ids.toUserFacebookId];
+    var socketToFetch = connected['10206426211234693'];
 
     // If the other person is connected...
     if (socketToFetch !== undefined) {
-      io.to(socketToFetch).emit('fetchLast');
+      io.to(socketToFetch).emit('fetchLast', ids.lastSentMessageId);
     }
 
   }); 
