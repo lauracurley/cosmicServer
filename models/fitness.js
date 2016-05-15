@@ -12,6 +12,10 @@ const Fitness = db.define('fitness',
       type: Sequelize.INTEGER,
       field: 'steps',
     },
+    lifetimeSteps: {
+      type: Sequelize.INTEGER,
+      field: 'lifetime_steps',
+    },
     restingHeartRate: {
       type: Sequelize.INTEGER,
       field: 'resting_heart_rate',
