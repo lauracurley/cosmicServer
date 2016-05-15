@@ -1,17 +1,17 @@
-var request = require('request');
-var secret = require('../apiKeys/keys.js');  // client api key
-var fitnessController = require('./fitnessController.js');
-var clientId = '227LH8'; // Your client id
-var User = require('../models/user.js');
-var moment = require('moment');
+const request = require('request');
+const secret = require('../apiKeys/keys.js');  // client api key
+const fitnessController = require('./fitnessController.js');
+const clientId = '227LH8'; // Your client id
+const User = require('../models/user.js');
+const moment = require('moment');
 
 // Authorizes a user to fitbit.
-module.exports.authorize = function (req, res) {
+module.exports.authorize = (req, res) => {
   // parse the access code from fitbit callbackURL
-  var code = req.body.query.url.split('=')[1].slice(0, -2);
-  var facebookId = req.body.query.facebookId;
+  const code = req.body.query.url.split('=')[1].slice(0, -2);
+  const facebookId = req.body.query.facebookId;
   // set options for token retrieval
-  var options = {
+  const options = {
     url: 'https://api.fitbit.com/oauth2/token',
     headers: {
       'Authorization': 'Basic ' + (new Buffer(clientId + ':' + secret).toString('base64')),
@@ -23,28 +23,38 @@ module.exports.authorize = function (req, res) {
     },
   };
   // Post to fitbit api to retrieve refresh token and access token .
-  request.post(options, function (error, response, body) {
+  request.post(options, (error, response, body) => {
     if (error) {
-      return console.log('Error in token request', error);
+      res.status(406).send('Error in authorization token request');
+      return console.log('Error in authorization token request', error);
     }
-    var access = JSON.parse(body);
+    const access = JSON.parse(body);
     module.exports.saveToken(access.refresh_token, facebookId);
-    module.exports.fetchFitbitData(access.access_token, function (error, fitnessData) {
+    // saves todays fitbit information
+    module.exports.fetchFitbitData(access.access_token, (error, fitnessData) => {
       if (error) {
-        return console.log(error);
+        res.status(406).json(false);
+        return console.log('Error in accessing fitbitData');
       }
-      fitnessController.saveFitbit(fitnessData, facebookId);
-      res.status(201).json(true);
+      fitnessController.saveDailyFitbit(fitnessData, facebookId);
+      module.exports.fetchLifetimefitbitData(access.access_token, (error, fitnessData) => {
+        if (error) {
+          res.status(406).json(false);
+          return console.log('Error in accessing fitbitData');
+        }
+        fitnessController.saveLifetimeFitbit(fitnessData, facebookId);
+        res.status(201).json(true);
+      });
     });
   });
 };
 
 // Refresh user's Fitbit refresh token, and callbacks with fitbit access token.
-module.exports.refreshToken = function (facebookId, cb) {
-  User.findOne({ where: { facebookId: facebookId } }).then(function (user) {
-    var token = user.get('facebookId');
+module.exports.refreshToken = (facebookId, cb) => {
+  User.findOne({ where: { facebookId } }).then(user => {
+    const token = user.get('fitbitToken');
     // Define options for fitbit refresh token
-    var options = {
+    const options = {
       url: 'https://api.fitbit.com/oauth2/token',
       headers: {
         Authorization: 'Basic ' + (new Buffer(clientId + ':' + secret).toString('base64')),
@@ -55,21 +65,22 @@ module.exports.refreshToken = function (facebookId, cb) {
       },
     };
     // Post to fitbit api to retrieve refresh token and access token.
-    request.post(options, function (error, response, body) {
-     var access = JSON.parse(body);
+    request.post(options, (error, response, body) => {
+      const access = JSON.parse(body);
       if (error) {
         return cb(error);
       }
       cb(null, access.access_token);
+      console.log(access);
       module.exports.saveToken(access.refresh_token, facebookId);
     });
   });
 };
 
-module.exports.fetchFitbitData = function (accessToken, cb) {
-  var today = moment().format('YYYY-MM-DD');
+module.exports.fetchFitbitData = (accessToken, cb) => {
+  const today = moment().format('YYYY-MM-DD');
   // Set options to retrieve todays fitbit Data.
-  var options = {
+  const options = {
     url: 'https://api.fitbit.com/1/user/-/activities/date/' + today + '.json',
     headers: {
       Authorization: 'Bearer ' + accessToken,
@@ -77,7 +88,7 @@ module.exports.fetchFitbitData = function (accessToken, cb) {
     json: true,
   };
   // Get today's fitbit data
-  request.get(options, function (error, response, body) {
+  request.get(options, (error, response, body) => {
     if (error) {
       return cb(error);
     }
@@ -85,8 +96,27 @@ module.exports.fetchFitbitData = function (accessToken, cb) {
   });
 };
 
-module.exports.saveToken = function (token, facebookId) {
-  User.update({ fitbitToken: token }, { where: { facebookId: facebookId } });
+module.exports.fetchLifetimefitbitData = (accessToken, cb) => {
+  const today = moment().format('YYYY-MM-DD');
+  // Set options to retrieve todays fitbit Data.
+  const options = {
+    url: 'https://api.fitbit.com/1/user/-/activities.json',
+    headers: {
+      Authorization: 'Bearer ' + accessToken,
+    },
+    json: true,
+  };
+  // Get today's fitbit data
+  request.get(options, (error, response, body) => {
+    if (error) {
+      return cb(error);
+    }
+    cb(null, body.lifetime.tracker.steps);
+  });
+};
+
+module.exports.saveToken = (token, facebookId) => {
+  User.update({ fitbitToken: token }, { where: { facebookId } });
 };
 
 
