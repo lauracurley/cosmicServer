@@ -1,4 +1,4 @@
-
+// test stuff
 require('./database/index.js')(); //require and invoke immediately to connect DB
 
 var express = require('express');
