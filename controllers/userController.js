@@ -110,11 +110,11 @@ module.exports.serveUsers = (req, res) => {
             } else {
               const userQueue = [{
                 id: null,
-                firstName: 'Grey Animal',
-                picturePath: '',
-                age: 'Extremely wise',
-                steps: 99999999,
-                restingHeartRate: 220,
+                firstName: 'Pat Smith',
+                picturePath: __dirname + ':8000/public/img/pat-smith.jpg',
+                age: 25,
+                steps: 23000,
+                restingHeartRate: 68,
               }];
               res.status(200).json({ userQueue });
             }
