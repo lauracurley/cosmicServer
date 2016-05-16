@@ -108,10 +108,11 @@ module.exports.serveUsers = (req, res) => {
               });
               res.status(200).json({ userQueue });
             } else {
+              const picUrl = __dirname + ':8000/public/img/pat-smith.jpg';
               const userQueue = [{
                 id: null,
                 firstName: 'Pat Smith',
-                picturePath: __dirname + ':8000/public/img/pat-smith.jpg',
+                picturePath: picUrl,
                 age: 25,
                 steps: 23000,
                 restingHeartRate: 68,
