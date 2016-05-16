@@ -67,4 +67,12 @@ module.exports.fetchAll = function (req, res) {
 
 };
 
+module.exports.fetchLast = function (req, res) {
+
+  Message.find({ where: { id: req.query.incomingMessageId } }).then(function(message) {
+    res.status(200).json(message.dataValues);
+    
+  });
+
+};
 
