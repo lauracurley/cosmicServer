@@ -2,6 +2,7 @@ const Wallet = require('../models/wallet.js');
 const Profile = require('../models/profile.js');
 const User = require('../models/user.js');
 const Fitness = require('../models/fitness.js');
+const fitbitController = require('../controllers/fitbitController.js');
 
 module.exports.fetchSteps = (req, res) => {
   const facebookId = req.query.facebookId;
@@ -36,7 +37,8 @@ module.exports.spendSteps = (facebookId, likedId, callback) => {
   });
 };
 
-module.exports.updateWallet = (facebookId, callback) => {
+module.exports.update = (req, res) => {
+  const facebookId = req.query.facebookId;
   User.findOne({
     where: { facebookId },
     include: [
@@ -47,9 +49,19 @@ module.exports.updateWallet = (facebookId, callback) => {
         model: Fitness,
       },
     ] }).then(user => {
-      const steps = user.fitness.get('steps');
-      user.wallet.get('steps');
-      user.wallet.set('steps', steps);
-      callback(user.wallet.get('steps'));
+      fitbitController.refreshToken(facebookId, (error, accessToken) => {
+        if (error) {
+          return res.status(406).send('Error gaining fitbit authorization reauthorization required');
+        }
+        fitbitController.fetchLifetimefitbitData(accessToken, (error, lifetimeSteps) => {
+          if (error) {
+            return res.status(406).send('Error accesing lifetimeSteps from fitbit reauthorization required');
+          }
+          const currentSteps = user.wallet.get('steps');
+          const walletIncrease = lifetimeSteps - user.fitness.get('lifetimeSteps');
+          user.wallet.set('steps', currentSteps + walletIncrease);
+          res.json(user.wallet.get('steps'));
+        });
+      });
     });
 };

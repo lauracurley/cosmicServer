@@ -76,13 +76,19 @@ module.exports.serveUsers = (req, res) => {
           matchDeletes.forEach(matchDelete => {
             matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : userId);
           });
-          // console.log('here are the matchIds', matchIds);
           User.findAll({
-            where: { id: { $ne: userId } },
+            where: {
+              id: {
+                $or: [
+                { $ne: userId },
+                { $notIn: matchIds }],
+              },
+            },
             include: [
               {
                 model: Profile,
                 where: {},
+                // where: { gender: targetGender },
               },
               {
                 model: Fitness,
@@ -92,7 +98,6 @@ module.exports.serveUsers = (req, res) => {
           }).then(usersData => {
             if (usersData.length) {
               const userQueue = usersData.map(userData => {
-                // console.log(userData);
                 return ({
                   id: userData.get('id'),
                   firstName: userData.get('firstName'),

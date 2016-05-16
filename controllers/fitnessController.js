@@ -2,7 +2,7 @@ const Fitness = require('../models/fitness.js');
 const User = require('../models/user.js');
 const Wallet = require('../models/wallet.js');
 
-module.exports.saveFitbit = (fitnessData, facebookId) => {
+module.exports.saveDailyFitbit = (fitnessData, facebookId) => {
   User.findOne({ where: { facebookId } }).then(user => {
     Fitness.findOrCreate({ where: { userId: user.get('id') } })
       .then(fitness => {
@@ -23,9 +23,15 @@ module.exports.saveFitbit = (fitnessData, facebookId) => {
       });
   });
 };
-//  Logic to refresh fitness data
-//  fitbitController.refreshToken(token, id, function(error, access){
-//     fitbitController.fetchFitbitData(access, function(error, data){
-//      fitnessController.saveFitbit(data, id);
-//     });
-//  });
+
+module.exports.saveLifetimeFitbit = (fitnessData, facebookId) => {
+  User.findOne({ where: { facebookId } }).then(user => {
+    Fitness.findOrCreate({ where: { userId: user.get('id') } })
+      .then(fitness => {
+        fitness[0].update({
+          lifetimeSteps: fitnessData,
+        });
+      });
+  });
+};
+

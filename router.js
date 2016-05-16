@@ -19,9 +19,10 @@ module.exports = (app, express) => {
   app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
   });
-  app.get('/api/wallet', walletController.fetchSteps);
 
-  app.post('/api/match/', matchController.saveOne);
+  app.get('/api/wallet', walletController.update);
+
+  app.post('/api/match', matchController.saveOne);
 
   app.post('/api/fitbit', fitbitController.authorize);
   app.get('/api/users', userController.serveUsers);
