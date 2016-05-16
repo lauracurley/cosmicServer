@@ -59,7 +59,6 @@ module.exports.serveUsers = (req, res) => {
       },
     }).then(matches => {
       const matchIds = matches.map(match => {
-        console.log(match.get('toUserId') === userId ? match.get('fromUserId') : match.get('toUserId'));
         return match.get('toUserId') === userId ? match.get('fromUserId') : match.get('toUserId');
       });
       matchIds.push(userId);
@@ -68,7 +67,6 @@ module.exports.serveUsers = (req, res) => {
           fromUserId: userId },
       }).then(matchRequests => {
         matchRequests.forEach(matchRequest => {
-          // console.log(matchRequest.get('toUserId'));
           matchIds.push(matchRequest.get('toUserId'));
         });
         MatchDelete.findAll({
@@ -77,7 +75,6 @@ module.exports.serveUsers = (req, res) => {
           },
         }).then(matchDeletes => {
           matchDeletes.forEach(matchDelete => {
-            // console.log(matchDelete.get('toUserId'));
             matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : match.get('fromUserId'));
           });
           User.findAll({
