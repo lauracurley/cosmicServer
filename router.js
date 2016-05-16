@@ -15,7 +15,6 @@ const path = require('path');
 
 module.exports = (app, express) => {
   // EXAMPLE CODE:
-<<<<<<< 9da62a4a5a75d75e1603ac8a786a3f4281c82a6f
 
   app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
@@ -23,15 +22,10 @@ module.exports = (app, express) => {
 
   app.get('/api/wallet', walletController.update);
 
-=======
-  app.get('/api/wallet', walletController.update);
-
->>>>>>> Update api/wallet to call walletController.update
-  app.post('/api/match', matchController.saveOne);
+  app.post('/api/match', matchRequestController.saveOne);
 
   app.post('/api/fitbit', fitbitController.authorize);
   app.get('/api/users', userController.serveUsers);
-  app.post('/api/fitbit', fitbitController.authorize);
   app.get('/auth', userController.isAuthed);
 
   app.post('/api/user', userController.saveOne);
