@@ -59,8 +59,9 @@ module.exports.serveUsers = (req, res) => {
       },
     }).then(matches => {
       const matchIds = matches.map(match => {
-        return match.get('fromUserId') === userId ? match.get('toUserId') : userId;
+        return match.get('toUserId') === userId ? match.get('fromUserId') : match.get('toUserId');
       });
+      matchIds.push(userId);
       MatchRequest.findAll({
         where: {
           fromUserId: userId },
@@ -74,14 +75,12 @@ module.exports.serveUsers = (req, res) => {
           },
         }).then(matchDeletes => {
           matchDeletes.forEach(matchDelete => {
-            matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : userId);
+            matchIds.push(matchDelete.get('fromUserId') === userId ? matchDelete.get('toUserId') : match.get('fromUserId'));
           });
           User.findAll({
             where: {
               id: {
-                $or: [
-                { $ne: userId },
-                { $notIn: matchIds }],
+                 $notIn: matchIds,
               },
             },
             include: [

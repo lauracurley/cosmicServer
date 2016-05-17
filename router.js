@@ -22,11 +22,10 @@ module.exports = (app, express) => {
 
   app.get('/api/wallet', walletController.update);
 
-  app.post('/api/match', matchController.saveOne);
+  app.post('/api/match', matchRequestController.saveOne);
 
   app.post('/api/fitbit', fitbitController.authorize);
   app.get('/api/users', userController.serveUsers);
-  app.post('/api/fitbit', fitbitController.authorize);
   app.get('/auth', userController.isAuthed);
 
   app.post('/api/user', userController.saveOne);
