@@ -33,12 +33,15 @@ module.exports.fetchAll = (req, res) => {
         }
 
         // Then, find an array contain the firstName, lastName, etc of the other users
-        User.findAll({ where: { id: matchesArray } }).then((matches) => {
+        User.findAll({
+          include: [{ model: Profile, required: true }],
+          where: { id: matchesArray },
+        })
+        .then((matches) => {
           var matchesArray = [];
           for (var i = 0; i < matches.length; i++) {
             matchesArray.push(matches[i].dataValues);
           }
-          // console.log('MATCHES ARRAY: ', matchesArray);
           res.status(200).json(matchesArray);
         });
       });
