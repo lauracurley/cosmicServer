@@ -14,7 +14,6 @@ module.exports.saveOne = (req, res) => {
     facebookId: req.body.facebookId,
   };
   User
-    // this should be facebookId, right? otherwise we get dupes if any other field isn't identical
     .findOrCreate({ where: userData })
     .spread((user) => {
       res.status(201).json(user.dataValues);
@@ -110,8 +109,8 @@ module.exports.serveUsers = (req, res) => {
             } else {
               const userQueue = [{
                 id: null,
-                firstName: 'Pat Smith',
-                picturePath: 'http://localhost:8000/public/img/pat-smith.jpg',
+                firstName: 'Blake Lively',
+                picturePath: 'http://localhost:8000/public/img/blake-lively.jpg',
                 age: 25,
                 steps: 9000,
                 restingHeartRate: 68,

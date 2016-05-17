@@ -1,4 +1,4 @@
-module.exports = function() {
+ module.exports = function() {
   var db = require('./db.js');
   var Fitness = require('../models/fitness.js');
   var NoInterest = require('../models/noInterest.js');

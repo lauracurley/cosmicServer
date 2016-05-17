@@ -1,5 +1,7 @@
 var Message = require('../models/message.js');
 var User = require('../models/user.js');
+var Profile = require('../models/profile.js');
+
 
 module.exports.saveOne = function (req, res) {
 
@@ -12,19 +14,34 @@ module.exports.saveOne = function (req, res) {
   };
 
   // First, find the user id that corresponds to the "from" user's facebook id
-  User.findOne({ where: { facebookId: messageData.fromUserFacebookId } }).then(function (fromUser) {
-    var _fromUserId = fromUser.get('id');
-    var _updatedMessageData = {
-      fromUserId: _fromUserId,
-      toUserId: req.body.toUserId,
-      text: req.body.text,
-      timestamp: req.body.timestamp,
+  User.findOne({ where: { facebookId: messageData.fromUserFacebookId } })
+    .then(function (fromUser) {
+      var _fromUserId = fromUser.get('id');
+      var _updatedMessageData = {
+        fromUserId: _fromUserId,
+        toUserId: req.body.toUserId,
+        text: req.body.text,
+        timestamp: req.body.timestamp,
+      };
+
+    var profileData = {
+      text: _updatedMessageData.text,
     };
+
+    Profile.findOne({ where: { userId: _updatedMessageData.fromUserId } })
+      .then(function(profile) {
+        profile.update(profileData);
+      });
+
+    Profile.findOne({ where: { userId: _updatedMessageData.toUserId } })
+      .then(function(profile) {
+        profile.update(profileData);
+      });
 
     // Then, save the message
     Message.create(_updatedMessageData).then(function(message) {
       res.status(201).json(message.dataValues);
-    }) 
+    })
   });
 };
 
@@ -61,8 +78,7 @@ module.exports.fetchAll = function (req, res) {
         }
         // console.log('MESSAGES: ', messagesArray);
         res.status(200).json(messagesArray);
-      });
-    
+      });  
   });
 
 };

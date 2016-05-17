@@ -28,6 +28,10 @@ const Profile = db.define('profile',
       type: Sequelize.INTEGER,
       field: 'steps',
     },
+    text: {
+      type: Sequelize.STRING,
+      field: 'text',
+    },
   },
   {
     freezeTableName: true, // Model tableName will be the same as the model name

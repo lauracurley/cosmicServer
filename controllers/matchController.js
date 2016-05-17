@@ -25,16 +25,16 @@ module.exports.fetchAll = (req, res) => {
         for (var i = 0; i < matches.length; i++) {
           var otherUserId;
           if (matches[i].dataValues.fromUserId === fromUserId) {
-            matchesArray.push(matches[i].dataValues.toUserId)
+            matchesArray.push(matches[i].dataValues.toUserId);
           } else {
-            matchesArray.push(matches[i].dataValues.fromUserId)
+            matchesArray.push(matches[i].dataValues.fromUserId);
           }
-
         }
 
         // Then, find an array contain the firstName, lastName, etc of the other users
         User.findAll({
           include: [{ model: Profile, required: true }],
+          // include: [{ model: Message, required: true}],
           where: { id: matchesArray },
         })
         .then((matches) => {
