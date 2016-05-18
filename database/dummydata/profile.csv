@@ -1,13 +1,13 @@
 e6865bd0-1618-11e6-ae54-af164fc5b0b3,25,male,22124,http://localhost:8000/public/img/christian-bale.jpg,500,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,2
-e6865bd0-1618-11e6-ae54-af164fc5b0b4,25,female,22124,http://localhost:8000/public/img/olivia-pope.jpg,100,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,3
-e6865bd0-1618-11e6-ae54-af164fc5b0b5,25,male,22124,http://localhost:8000/public/img/hugh-jackman.jpg,200,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,4
-e6865bd0-1618-11e6-ae54-af164fc5b0b6,25,female,22124,http://localhost:8000/public/img/angelina-jolie.jpg,300,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,5
-e6865bd0-1618-11e6-ae54-af164fc5b0b7,25,male,22124,http://localhost:8000/public/img/paul-walker.jpg,400,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,6
-e6865bd0-1618-11e6-ae54-af164fc5b0b8,25,female,94102,http://localhost:8000/public/img/keira-knightly.jpg,500,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,7
-e6865bd0-1618-11e6-ae54-af164fc5b0b9,25,male,94102,http://localhost:8000/public/img/adam-garcia.jpg,600,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,8
-e6865bd0-1618-11e6-ae54-af164fc5b0c1,25,female,94102,http://localhost:8000/public/img/blake-lively.jpg,700,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,9
-e6865bd0-1618-11e6-ae54-af164fc5b0c2,25,male,94102,http://localhost:8000/public/img/ryan-reynolds.jpg,800,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,10
-e6865bd0-1618-11e6-ae54-af164fc5b0c3,25,female,94102,http://localhost:8000/public/img/jennifer.jpg,900,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,11
-e6865bd0-1618-11e6-ae54-af164fc5b0c4,25,male,94102,http://localhost:8000/public/img/hugh-jackman.jpg,1000,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,12
-e6865bd0-1618-11e6-ae54-af164fc5b0c5,25,male,94102,http://localhost:8000/public/img/matthew-goode.jpg,400,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,13
-e6865bd0-1618-11e6-ae54-af164fc5b0c6,25,male,94102,http://localhost:8000/public/img/tristan-wilds.jpg,500,Hi,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,14
+e6865bd0-1618-11e6-ae54-af164fc5b0b4,25,female,22124,http://localhost:8000/public/img/olivia-pope.jpg,100,Want to get coffee?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,3
+e6865bd0-1618-11e6-ae54-af164fc5b0b5,25,male,22124,http://localhost:8000/public/img/hugh-jackman.jpg,200,What are you up to this weekend?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,4
+e6865bd0-1618-11e6-ae54-af164fc5b0b6,25,female,22124,http://localhost:8000/public/img/angelina-jolie.jpg,300,Sup,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,5
+e6865bd0-1618-11e6-ae54-af164fc5b0b7,25,male,22124,http://localhost:8000/public/img/paul-walker.jpg,400,How long have you lived in SF?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,6
+e6865bd0-1618-11e6-ae54-af164fc5b0b8,25,female,94102,http://localhost:8000/public/img/keira-knightly.jpg,500,I'm just here to test this app. Seriously.,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,7
+e6865bd0-1618-11e6-ae54-af164fc5b0b9,25,male,94102,http://localhost:8000/public/img/adam-garcia.jpg,600,Hey,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,8
+e6865bd0-1618-11e6-ae54-af164fc5b0c1,25,female,94102,http://localhost:8000/public/img/blake-lively.jpg,700,Name three things you are grateful for,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,9
+e6865bd0-1618-11e6-ae54-af164fc5b0c2,25,male,94102,http://localhost:8000/public/img/ryan-reynolds.jpg,800,What's your favorite thing to do in Vegas?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,10
+e6865bd0-1618-11e6-ae54-af164fc5b0c3,25,female,94102,http://localhost:8000/public/img/jennifer.jpg,900,I like puppies,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,11
+e6865bd0-1618-11e6-ae54-af164fc5b0c4,25,male,94102,http://localhost:8000/public/img/hugh-jackman.jpg,1000,My last tinder date was a snooze fest,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,12
+e6865bd0-1618-11e6-ae54-af164fc5b0c5,25,male,94102,http://localhost:8000/public/img/matthew-goode.jpg,400,Shots?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,13
+e6865bd0-1618-11e6-ae54-af164fc5b0c6,25,male,94102,http://localhost:8000/public/img/tristan-wilds.jpg,500,Sangria?,2016-05-09 19:16:08.969-07,2016-05-09 19:16:08.969-07,14

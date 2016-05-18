@@ -2,7 +2,6 @@ var Message = require('../models/message.js');
 var User = require('../models/user.js');
 var Profile = require('../models/profile.js');
 
-
 module.exports.saveOne = function (req, res) {
 
   // res.send(200);
@@ -76,9 +75,8 @@ module.exports.fetchAll = function (req, res) {
           }
           messagesArray.push(messages[i].dataValues);
         }
-        // console.log('MESSAGES: ', messagesArray);
         res.status(200).json(messagesArray);
-      });  
+      }); 
   });
 
 };
